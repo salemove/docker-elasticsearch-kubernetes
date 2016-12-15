@@ -32,4 +32,4 @@ discovery:
     hosts_provider: kubernetes
     minimum_master_nodes: ${NUMBER_OF_MASTERS}
 
-plugin.mandatory: discovery-kubernetes
+plugin.mandatory: discovery-kubernetes,repository-s3
