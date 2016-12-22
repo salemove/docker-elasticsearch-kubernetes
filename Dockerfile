@@ -18,3 +18,7 @@ ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 # Set environment
 ENV NAMESPACE default
 ENV DISCOVERY_SERVICE elasticsearch-discovery
+
+# Override run script
+COPY run.sh /
+
