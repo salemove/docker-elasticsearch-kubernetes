@@ -2,6 +2,9 @@ FROM quay.io/pires/docker-elasticsearch:5.1.1_1
 
 MAINTAINER techmovers@salemove.com
 
+# Install some additional packages, to communicate with kubernetes api
+RUN apk add --update jq curl && rm -rf /var/cache/apk/*
+
 # Override elasticsearch.yml config, otherwise plug-in install will fail
 ADD do_not_use.yml /elasticsearch/config/elasticsearch.yml
 
