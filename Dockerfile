@@ -3,20 +3,21 @@ FROM quay.io/pires/docker-elasticsearch:5.1.1_1
 MAINTAINER techmovers@salemove.com
 
 # Add user/group
-RUN addgroup sudo
-RUN adduser -D -g '' elasticsearch
-RUN adduser elasticsearch sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN addgroup sudo \
+  && adduser -D -g '' elasticsearch \
+  && adduser elasticsearch sudo \
+  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install some additional packages, to communicate with kubernetes api
-RUN apk add --update jq curl && rm -rf /var/cache/apk/*
+RUN apk add --update jq curl \
+  && rm -rf /var/cache/apk/*
 
 # Override elasticsearch.yml config, otherwise plug-in install will fail
 ADD do_not_use.yml /elasticsearch/config/elasticsearch.yml
 
 # Install Elasticsearch plug-ins
-RUN /elasticsearch/bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.1.1 --verbose
-RUN /elasticsearch/bin/elasticsearch-plugin install repository-s3 --verbose
+RUN /elasticsearch/bin/elasticsearch-plugin install io.fabric8:elasticsearch-cloud-kubernetes:5.1.1 --verbose \
+ && /elasticsearch/bin/elasticsearch-plugin install repository-s3 --verbose
 
 # Override elasticsearch.yml config, otherwise plug-in install will fail
 ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
