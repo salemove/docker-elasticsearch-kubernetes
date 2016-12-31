@@ -2,6 +2,12 @@ FROM quay.io/pires/docker-elasticsearch:5.1.1_1
 
 MAINTAINER techmovers@salemove.com
 
+# Add user/group
+RUN addgroup sudo
+RUN adduser -D -g '' elasticsearch
+RUN adduser elasticsearch sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 # Install some additional packages, to communicate with kubernetes api
 RUN apk add --update jq curl && rm -rf /var/cache/apk/*
 

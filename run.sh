@@ -6,12 +6,8 @@ KUBE_NODE=$(curl -s --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.cr
 ZONE=$(curl -s --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H "Authorization: Bearer $KUBE_TOKEN" https://kubernetes.default/api/v1/nodes/$KUBE_NODE | jq -r '.metadata.labels."failure-domain.beta.kubernetes.io/zone"')
 export ZONE
 
-# provision elasticsearch user
-addgroup sudo
-adduser -D -g '' elasticsearch
-adduser elasticsearch sudo
+# change ownership of elasticsearch directories
 chown -R elasticsearch /elasticsearch /data
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # allow for memlock
 ulimit -l unlimited
