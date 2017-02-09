@@ -32,13 +32,9 @@ http:
     enabled: ${HTTP_CORS_ENABLE}
     allow-origin: ${HTTP_CORS_ALLOW_ORIGIN}
 
-cloud:
-  kubernetes:
-    service: ${DISCOVERY_SERVICE}
-    namespace: ${NAMESPACE}
 discovery:
   zen:
-    hosts_provider: kubernetes
+    ping.unicast.hosts: ${DISCOVERY_SERVICE}
     minimum_master_nodes: ${NUMBER_OF_MASTERS}
 
-plugin.mandatory: discovery-kubernetes,repository-s3
+plugin.mandatory: repository-s3
