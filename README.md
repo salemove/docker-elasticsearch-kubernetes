@@ -1,13 +1,16 @@
 # docker-elasticsearch-kubernetes
 
+<<<<<<< HEAD
 Ready to use lean Elasticsearch Docker image ready for using within a Kubernetes cluster.
+=======
+Ready to use lean (119MB) Elasticsearch Docker image ready for using within a Kubernetes cluster.
+>>>>>>> 5.2.0
 
 
 ## Current software
 
 * OpenJDK JRE 8u112
-* Elasticsearch 5.1.1
-* Kubernetes discovery plug-in 5.1.1
+* Elasticsearch 5.2.0
 * repository-s3 plug-in
 
 ## Run
