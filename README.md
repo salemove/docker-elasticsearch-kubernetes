@@ -2,12 +2,10 @@
 
 Ready to use lean Elasticsearch Docker image ready for using within a Kubernetes cluster.
 
-
 ## Current software
 
 * OpenJDK JRE 8u112
-* Elasticsearch 5.1.1
-* Kubernetes discovery plug-in 5.1.1
+* Elasticsearch 5.2.0
 * repository-s3 plug-in
 
 ## Run
